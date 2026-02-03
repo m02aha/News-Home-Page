@@ -1,22 +1,21 @@
 
-let menu=document.querySelector(".menu");
-let nav=document.querySelector("nav");
-let close=document.querySelector(".close");
 
+const menuBtn = document.querySelector('.menu');
+const closeBtn = document.querySelector('.close');
+const navMenu = document.querySelector('nav');
 
+// Open Menu
+menuBtn.addEventListener('click', () => {
+    navMenu.classList.add('active');
+  
+    document.body.style.overflow = 'hidden'; 
+});
 
-menu.onclick=function(){
-    nav.classList.toggle("active");
-    
-   
-}
-
-
-close.onclick=function(){    
-   
-    nav.classList.toggle("active");
-   
-    }
-
+// Close Menu
+closeBtn.addEventListener('click', () => {
+    navMenu.classList.remove('active');
+    // Restore scrolling
+    document.body.style.overflow = 'auto';
+});
     
  

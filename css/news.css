@@ -22,6 +22,10 @@
   
 }
 
+html,body{
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
 .container{
     /* background-color:cadetblue; */
@@ -70,7 +74,7 @@ body{
     position: relative;
     display: flex;
     justify-content: space-between;
-    padding-top:60px;
+    padding-top:0px;
     padding-bottom: 20px;
     align-items: center;
     margin-top: 20px;
@@ -104,66 +108,74 @@ nav .links li a:hover{
 }
 
 
-  
 
-@media (max-width:768px) {
-    .header{
-        margin-top: 20px;
-        padding-top:2;
-      
-
-      
-    }
-    body{
-        overflow: hidden;
+@media (max-width: 768px) {
+    
+    body {
         position: relative;
+        overflow-x: hidden;
     }
-    .menu{
+.menu{
+    display: block;
+}
+    
+    nav {
         display: block;
+        position: fixed; /* Stays fixed to the screen */
+        top: 0;
+        right: -100%; /* Hidden completely off-screen to the right */
+        width: 70%;    /* Width of the sidebar */
+        height: 100vh;
+        background-color: white;
+        z-index: 1000;
+        transition: 0.4s ease; /* Smooth sliding animation */
+        opacity: 1;    /* Keep opacity at 1 so we can see it slide */
+    }
 
+    nav.active {
+        right: 0;      /* Slides in to the right edge */
     }
-    nav ul{
-        width:200px;
+
+   
+    nav .links {
+        flex-direction: column;
+        padding-top: 50px;
+        padding-left: 20px;
     }
-     nav ul li{
-          font-size: 18px;
-     }
-    nav{
+
+    nav .links li {
+        margin: 20px 0;
+    }
+
+    /* 5. Show the Close button inside the menu */
+    .close {
         display: block;
-     position: absolute;
-  opacity: 0;
-    top: -35px;
-    right: -23px;
-    transition: 0.3s;
-    z-index: 4;
-    /* position: relative; */
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        cursor: pointer;
+    }
+
+    /* 6. Gray Overlay when menu is open */
+    nav.active::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: -150%; /* Position it far left of the nav */
+        width: 150%; /* Cover the remaining 30% of screen and then some */
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+    }
 }
-nav::before{
-     display: block;
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    z-index: -1;
-    right: 285px;
-    background-color: #7573736b;
-
-    backdrop-filter: blur(5px);
-     -webkit-backdrop-filter: blur(5px);
-}
-
-
-}
-
 
 nav ul{
     background-color: white;
-    flex-direction: column;
-    width: 315px;
-    height: 300vh;
+    flex-direction: row;
+    /* width: 315px;
+    height: 300vh; */
     padding: 0;
-    padding-top: 70px;
+    /* padding-top: 70px; */
  
 
 }
@@ -182,7 +194,8 @@ nav.active{
 }
 
  .close{
-    display: block;
+    /* display: none; */
+    /* display: block; */
     padding: 30px;
   margin-bottom: 40px;
    position: relative;
